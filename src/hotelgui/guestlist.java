@@ -98,6 +98,8 @@ public class guestlist extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        guestlist.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        guestlist.setForeground(new java.awt.Color(237, 183, 147));
         guestlist.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -116,6 +118,7 @@ public class guestlist extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(guestlist);
 
+        jButton1.setBackground(new java.awt.Color(114, 152, 139));
         jButton1.setText("Reload");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

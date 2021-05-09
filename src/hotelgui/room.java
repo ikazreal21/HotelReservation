@@ -235,8 +235,10 @@ public class room extends javax.swing.JFrame {
         txtrtype.getAccessibleContext().setAccessibleName("rtype");
 
         jLabel5.setFont(new java.awt.Font("Roboto Medium", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(95, 117, 141));
         jLabel5.setText("Rooms");
 
+        jButton1.setBackground(new java.awt.Color(114, 152, 139));
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,6 +246,7 @@ public class room extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(114, 152, 139));
         jButton2.setText("Clear");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,6 +254,7 @@ public class room extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(114, 152, 139));
         jButton4.setText("Edit");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,6 +269,7 @@ public class room extends javax.swing.JFrame {
             }
         });
 
+        roomtable.setForeground(new java.awt.Color(237, 183, 147));
         roomtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -288,6 +293,7 @@ public class room extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(roomtable);
 
+        jButton3.setBackground(new java.awt.Color(114, 152, 139));
         jButton3.setText("Delete");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

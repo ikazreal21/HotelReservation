@@ -209,6 +209,7 @@ public class reservation extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 153)));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(95, 117, 141));
         jLabel1.setText("Date Reservation");
 
         jLabel2.setText("Reservation No.");
@@ -235,7 +236,7 @@ public class reservation extends javax.swing.JFrame {
         jLabel9.setText("Bed Type");
 
         jLabel10.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel10.setForeground(new java.awt.Color(114, 152, 139));
         jLabel10.setText("jLabel10");
 
         txtname.addActionListener(new java.awt.event.ActionListener() {
@@ -246,6 +247,7 @@ public class reservation extends javax.swing.JFrame {
 
         txtrno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", " " }));
 
+        jButton1.setBackground(new java.awt.Color(114, 152, 139));
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +255,7 @@ public class reservation extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(114, 152, 139));
         jButton2.setText("Edit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,6 +263,7 @@ public class reservation extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(114, 152, 139));
         jButton3.setText("Delete");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,6 +271,7 @@ public class reservation extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(114, 152, 139));
         jButton4.setText("Reset");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,6 +279,8 @@ public class reservation extends javax.swing.JFrame {
             }
         });
 
+        reservationtable.setAutoCreateRowSorter(true);
+        reservationtable.setForeground(new java.awt.Color(237, 183, 147));
         reservationtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

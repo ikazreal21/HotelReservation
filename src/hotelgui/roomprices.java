@@ -64,6 +64,7 @@ public class roomprices extends javax.swing.JFrame {
         jLabel7.setText("Family");
 
         jLabel8.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(95, 117, 141));
         jLabel8.setText("Price Info");
 
         jLabel9.setText("200");
@@ -78,6 +79,7 @@ public class roomprices extends javax.swing.JFrame {
 
         jLabel15.setText("600");
 
+        jButton1.setBackground(new java.awt.Color(114, 152, 139));
         jButton1.setText("Go Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

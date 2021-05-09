@@ -112,6 +112,7 @@ public class checkout extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        checkout.setForeground(new java.awt.Color(237, 183, 147));
         checkout.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -139,10 +140,12 @@ public class checkout extends javax.swing.JFrame {
         jScrollPane1.setViewportView(checkout);
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(95, 117, 141));
         jLabel1.setText("Check out");
 
         jLabel2.setText("Check out Date");
 
+        jButton1.setBackground(new java.awt.Color(114, 152, 139));
         jButton1.setText("Check Out");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,6 +248,7 @@ public class checkout extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

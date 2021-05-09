@@ -95,7 +95,7 @@ public class openingform extends javax.swing.JFrame {
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 126, 47));
 
         jLabel2.setText("Name of the Group");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 440, -1, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, -1, 20));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/first.jpeg"))); // NOI18N
         jLabel3.setText("jLabel3");

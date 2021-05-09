@@ -134,6 +134,7 @@ public class checkin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(95, 117, 141));
         jLabel1.setText("Check In");
 
         jLabel2.setText("Guest Name");
@@ -150,8 +151,10 @@ public class checkin extends javax.swing.JFrame {
 
         jLabel9.setText("Payment");
 
+        jLabel10.setForeground(new java.awt.Color(114, 152, 139));
         jLabel10.setText("jLabel10");
 
+        jButton1.setBackground(new java.awt.Color(114, 152, 139));
         jButton1.setText("Check In");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +162,7 @@ public class checkin extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(114, 152, 139));
         jButton2.setText("Clear");
 
         jButton3.setText("Go back");
