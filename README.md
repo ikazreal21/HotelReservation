@@ -1,6 +1,6 @@
 ### HotelReservation
 
-##Requirements
+#Requirements
 
-Xammp
+Xammp, 
 Netbeans
