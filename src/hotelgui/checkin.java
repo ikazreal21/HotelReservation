@@ -12,22 +12,22 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Model.*;
 
-/**
- *
- * @author expzak
- */
-public class checkin extends javax.swing.JFrame {
+
+public class checkin extends javax.swing.JFrame{
+
+    static Checkin_Model CheckinModel = new Checkin_Model();
 
     /**
      * Creates new form checkin
      */
     public checkin() {
         initComponents();
-        Connect();
-        autoID();
-        Roomtype();
-        RoomNo();
+        CheckinModel.Connect();
+        CheckinModel.autoID();
+        CheckinModel.Roomtype();
+        CheckinModel.RoomNo();
     }
     
     
@@ -35,73 +35,73 @@ public class checkin extends javax.swing.JFrame {
     PreparedStatement pst;
     DefaultTableModel dtm;
     
-    public void Connect(){
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/HotelReservation", "root", "");    
-             
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void autoID(){
-        
-        try {
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("Select MAX(chid) from checkin");
-            rs.next();
-            rs.getString("MAX(chid)");
-            
-            if(rs.getString("MAX(chid)")==null){
-                jLabel10.setText("G001");
-            }
-            else{
-                long id = Long.parseLong(rs.getString("MAX(chid)").substring(2, rs.getString("MAX(chid)").length()));
-                id++;
-                jLabel10.setText("G" + String.format("%03d", id));
-            }
-           
-            
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-     public void Roomtype(){
-        try {
-            pst = conn.prepareStatement("select Distinct rtype from room");
-            ResultSet rs = pst.executeQuery();
-            txtrtype.removeAllItems();
-            
-            while(rs.next()){
-                txtrtype.addItem(rs.getString("rtype"));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-                
-    }
-    public void RoomNo(){
-        try {
-            pst = conn.prepareStatement("select Distinct rid from room");
-            ResultSet rs = pst.executeQuery();
-            txtrno.removeAllItems();
-            
-            while(rs.next()){
-                txtrno.addItem(rs.getString("rid"));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-                
-    }
+//    public void Connect(){
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/HotelReservation", "root", "");    
+//             
+//        } catch (ClassNotFoundException | SQLException ex) {
+//            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//    
+//    public void autoID(){
+//        
+//        try {
+//            Statement st = conn.createStatement();
+//            ResultSet rs = st.executeQuery("Select MAX(chid) from checkin");
+//            rs.next();
+//            rs.getString("MAX(chid)");
+//            
+//            if(rs.getString("MAX(chid)")==null){
+//                jLabel10.setText("G001");
+//            }
+//            else{
+//                long id = Long.parseLong(rs.getString("MAX(chid)").substring(2, rs.getString("MAX(chid)").length()));
+//                id++;
+//                jLabel10.setText("G" + String.format("%03d", id));
+//            }
+//           
+//            
+//            
+//            
+//        } catch (SQLException ex) {
+//            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//    
+//     public void Roomtype(){
+//        try {
+//            pst = conn.prepareStatement("select Distinct rtype from room");
+//            ResultSet rs = pst.executeQuery();
+//            txtrtype.removeAllItems();
+//            
+//            while(rs.next()){
+//                txtrtype.addItem(rs.getString("rtype"));
+//            }
+//            
+//        } catch (SQLException ex) {
+//            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//                
+//    }
+//    public void RoomNo(){
+//        try {
+//            pst = conn.prepareStatement("select Distinct rid from room");
+//            ResultSet rs = pst.executeQuery();
+//            txtrno.removeAllItems();
+//            
+//            while(rs.next()){
+//                txtrno.addItem(rs.getString("rid"));
+//            }
+//            
+//        } catch (SQLException ex) {
+//            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//                
+//    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -151,6 +151,18 @@ public class checkin extends javax.swing.JFrame {
 
         jLabel9.setText("Payment");
 
+        txtrno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrnoActionPerformed(evt);
+            }
+        });
+
+        txtrtype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrtypeActionPerformed(evt);
+            }
+        });
+
         jLabel10.setForeground(new java.awt.Color(114, 152, 139));
         jLabel10.setText("jLabel10");
 
@@ -164,6 +176,11 @@ public class checkin extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(114, 152, 139));
         jButton2.setText("Clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Go back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -289,7 +306,7 @@ public class checkin extends javax.swing.JFrame {
             pst.setString(2, gname);
             pst.setString(3, phone);
             pst.setString(4, indate);
-//            pst.setString(5, outdate);
+//          pst.setString(5, outdate);
             pst.setString(5, roomno);
             pst.setString(6, roomtype);
             pst.setString(7, payment);
@@ -307,7 +324,7 @@ public class checkin extends javax.swing.JFrame {
                     txtrno.setSelectedIndex(-1);
                     txtrtype.setSelectedIndex(-1);
                     txtpayment.setText("");
-                    autoID();
+                    CheckinModel.autoID();
                     break;
                 case JOptionPane.NO_OPTION:
                     System.exit(0);
@@ -321,6 +338,18 @@ public class checkin extends javax.swing.JFrame {
             Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtrnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtrnoActionPerformed
+
+    private void txtrtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrtypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtrtypeActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
