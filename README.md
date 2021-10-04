@@ -2,5 +2,11 @@
 
 #Requirements
 
-Xammp, 
-Netbeans
+Xampp, Netbeans
+
+
+
+Updated Version:
+- MVC(Model, View, Controller) Architecture 
+- Login Screen 
+- Enhance UI for better User Experience 
