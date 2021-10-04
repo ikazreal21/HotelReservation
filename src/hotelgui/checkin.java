@@ -19,9 +19,7 @@ public class checkin extends javax.swing.JFrame{
 
     static Checkin_Model CheckinModel = new Checkin_Model();
 
-    /**
-     * Creates new form checkin
-     */
+    
     public checkin() {
         initComponents();
         CheckinModel.Connect();
