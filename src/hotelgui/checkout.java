@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hotelgui;
 
 import java.sql.Connection;
@@ -20,15 +15,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author expzak
- */
 public class checkout extends javax.swing.JFrame {
 
-    /**
-     * Creates new form checkout
-     */
     public checkout() {
         initComponents();
         Connect();
