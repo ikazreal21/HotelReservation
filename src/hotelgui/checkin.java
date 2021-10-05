@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hotelgui;
 
 import java.sql.*;
@@ -11,96 +6,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import Model.*;
+import Controller.*;
+
 
 
 public class checkin extends javax.swing.JFrame{
-
+    static Checkin_Controller CheckinController = new Checkin_Controller();
     static Checkin_Model CheckinModel = new Checkin_Model();
 
     
     public checkin() {
         initComponents();
         CheckinModel.Connect();
-        CheckinModel.autoID();
-        CheckinModel.Roomtype();
-        CheckinModel.RoomNo();
+        CheckinController.autoID();
+        CheckinController.Roomtype();
+        CheckinController.RoomNo();
     }
-    
-    
-    Connection conn;
-    PreparedStatement pst;
-    DefaultTableModel dtm;
-    
-//    public void Connect(){
-//        try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/HotelReservation", "root", "");    
-//             
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//    
-//    public void autoID(){
-//        
-//        try {
-//            Statement st = conn.createStatement();
-//            ResultSet rs = st.executeQuery("Select MAX(chid) from checkin");
-//            rs.next();
-//            rs.getString("MAX(chid)");
-//            
-//            if(rs.getString("MAX(chid)")==null){
-//                jLabel10.setText("G001");
-//            }
-//            else{
-//                long id = Long.parseLong(rs.getString("MAX(chid)").substring(2, rs.getString("MAX(chid)").length()));
-//                id++;
-//                jLabel10.setText("G" + String.format("%03d", id));
-//            }
-//           
-//            
-//            
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//    
-//     public void Roomtype(){
-//        try {
-//            pst = conn.prepareStatement("select Distinct rtype from room");
-//            ResultSet rs = pst.executeQuery();
-//            txtrtype.removeAllItems();
-//            
-//            while(rs.next()){
-//                txtrtype.addItem(rs.getString("rtype"));
-//            }
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//                
-//    }
-//    public void RoomNo(){
-//        try {
-//            pst = conn.prepareStatement("select Distinct rid from room");
-//            ResultSet rs = pst.executeQuery();
-//            txtrno.removeAllItems();
-//            
-//            while(rs.next()){
-//                txtrno.addItem(rs.getString("rid"));
-//            }
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//                
-//    }
-    
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -299,16 +222,16 @@ public class checkin extends javax.swing.JFrame{
         String payment = txtpayment.getText();
  
         try {
-            pst = conn.prepareStatement("insert into checkin(chid, g_name, gphone, chin, roomno, rtype, payment) values(?,?,?,?,?,?,?)");
-            pst.setString(1, resno);
-            pst.setString(2, gname);
-            pst.setString(3, phone);
-            pst.setString(4, indate);
+            CheckinModel.pst = CheckinModel.conn.prepareStatement("insert into checkin(chid, g_name, gphone, chin, roomno, rtype, payment) values(?,?,?,?,?,?,?)");
+            CheckinModel.pst.setString(1, resno);
+            CheckinModel.pst.setString(2, gname);
+            CheckinModel.pst.setString(3, phone);
+            CheckinModel.pst.setString(4, indate);
 //          pst.setString(5, outdate);
-            pst.setString(5, roomno);
-            pst.setString(6, roomtype);
-            pst.setString(7, payment);
-            pst.executeUpdate();
+            CheckinModel.pst.setString(5, roomno);
+            CheckinModel.pst.setString(6, roomtype);
+            CheckinModel.pst.setString(7, payment);
+            CheckinModel.pst.executeUpdate();
             
             int res3 = JOptionPane.showOptionDialog(new JFrame(), "Do you Confirm the Check in of " + gname + "\nWith the Balance of " + payment,"Confirmation",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Yes", "No" },
@@ -322,7 +245,7 @@ public class checkin extends javax.swing.JFrame{
                     txtrno.setSelectedIndex(-1);
                     txtrtype.setSelectedIndex(-1);
                     txtpayment.setText("");
-                    CheckinModel.autoID();
+                    CheckinController.autoID();
                     break;
                 case JOptionPane.NO_OPTION:
                     System.exit(0);
@@ -401,7 +324,15 @@ public class checkin extends javax.swing.JFrame{
     private javax.swing.JTextField txtgname;
     private javax.swing.JTextField txtpayment;
     private javax.swing.JTextField txtphone;
-    private javax.swing.JComboBox<String> txtrno;
-    private javax.swing.JComboBox<String> txtrtype;
+    public javax.swing.JComboBox<String> txtrno;
+    public javax.swing.JComboBox<String> txtrtype;
     // End of variables declaration//GEN-END:variables
+    public String getLabel10(){
+        return jLabel10.getText();
+   }
+
+   public void setjLabel10(String data){
+        this.jLabel10.setText(data);
+   }
+
 }

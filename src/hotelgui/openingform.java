@@ -34,17 +34,17 @@ public class openingform extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Grey"));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Roboto Condensed", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("HOTEL MANAGEMENT");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, -1, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, 30));
 
         jButton1.setText("RESERVATION");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +52,7 @@ public class openingform extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, 47));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 140, 47));
 
         jButton3.setText("CHECK IN");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +60,7 @@ public class openingform extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 141, 47));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 141, 47));
 
         jButton6.setText("CHECK OUT");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -68,7 +68,7 @@ public class openingform extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, -1, 47));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 140, 47));
 
         jButton2.setText("GUESTLIST");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +76,7 @@ public class openingform extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 108, 47));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 140, 47));
 
         jButton5.setText("ROOMS PRICES");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +84,7 @@ public class openingform extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 141, 45));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 141, 45));
 
         jButton4.setText("ROOMS");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -92,14 +92,10 @@ public class openingform extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 126, 47));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 140, 47));
 
-        jLabel2.setText("Name of the Group");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, -1, 20));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/first.jpeg"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 470));
+        jButton7.setText("Logout");
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -183,8 +179,7 @@ public class openingform extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
