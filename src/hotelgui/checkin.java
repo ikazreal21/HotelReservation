@@ -6,22 +6,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import Model.*;
-import Controller.*;
+//import Model.*;
 
 
 
 public class checkin extends javax.swing.JFrame{
-    static Checkin_Controller CheckinController = new Checkin_Controller();
-    static Checkin_Model CheckinModel = new Checkin_Model();
+    static Checkin_Controller CheckinC;
 
     
     public checkin() {
         initComponents();
-        CheckinModel.Connect();
-        CheckinController.autoID();
-        CheckinController.Roomtype();
-        CheckinController.RoomNo();
+        Checkin_Controller.Connect();
+        Checkin_Controller.autoID();
+        Checkin_Controller.Roomtype();
+        Checkin_Controller.RoomNo();
     }
       
     /**
@@ -120,37 +118,33 @@ public class checkin extends javax.swing.JFrame{
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(83, 83, 83)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtrtype, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtgname)
-                                    .addComponent(txtcheckin, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                                     .addComponent(txtphone)
-                                    .addComponent(txtrno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(83, 83, 83)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtrno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtcheckin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(49, 49, 49))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtrtype, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel7)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(118, 118, 118)
                                 .addComponent(jButton2)))
-                        .addGap(0, 52, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -222,16 +216,16 @@ public class checkin extends javax.swing.JFrame{
         String payment = txtpayment.getText();
  
         try {
-            CheckinModel.pst = CheckinModel.conn.prepareStatement("insert into checkin(chid, g_name, gphone, chin, roomno, rtype, payment) values(?,?,?,?,?,?,?)");
-            CheckinModel.pst.setString(1, resno);
-            CheckinModel.pst.setString(2, gname);
-            CheckinModel.pst.setString(3, phone);
-            CheckinModel.pst.setString(4, indate);
+            Checkin_Controller.pst = Checkin_Controller.conn.prepareStatement("insert into checkin(chid, g_name, gphone, chin, roomno, rtype, payment) values(?,?,?,?,?,?,?)");
+            Checkin_Controller.pst.setString(1, resno);
+            Checkin_Controller.pst.setString(2, gname);
+            Checkin_Controller.pst.setString(3, phone);
+            Checkin_Controller.pst.setString(4, indate);
 //          pst.setString(5, outdate);
-            CheckinModel.pst.setString(5, roomno);
-            CheckinModel.pst.setString(6, roomtype);
-            CheckinModel.pst.setString(7, payment);
-            CheckinModel.pst.executeUpdate();
+            Checkin_Controller.pst.setString(5, roomno);
+            Checkin_Controller.pst.setString(6, roomtype);
+            Checkin_Controller.pst.setString(7, payment);
+            Checkin_Controller.pst.executeUpdate();
             
             int res3 = JOptionPane.showOptionDialog(new JFrame(), "Do you Confirm the Check in of " + gname + "\nWith the Balance of " + payment,"Confirmation",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Yes", "No" },
@@ -245,7 +239,7 @@ public class checkin extends javax.swing.JFrame{
                     txtrno.setSelectedIndex(-1);
                     txtrtype.setSelectedIndex(-1);
                     txtpayment.setText("");
-                    CheckinController.autoID();
+                    Checkin_Controller.autoID();
                     break;
                 case JOptionPane.NO_OPTION:
                     System.exit(0);
@@ -301,6 +295,7 @@ public class checkin extends javax.swing.JFrame{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new checkin().setVisible(true);
             }
@@ -312,7 +307,7 @@ public class checkin extends javax.swing.JFrame{
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    static javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -324,15 +319,15 @@ public class checkin extends javax.swing.JFrame{
     private javax.swing.JTextField txtgname;
     private javax.swing.JTextField txtpayment;
     private javax.swing.JTextField txtphone;
-    public javax.swing.JComboBox<String> txtrno;
-    public javax.swing.JComboBox<String> txtrtype;
+    static javax.swing.JComboBox<String> txtrno;
+    static javax.swing.JComboBox<String> txtrtype;
     // End of variables declaration//GEN-END:variables
     public String getLabel10(){
         return jLabel10.getText();
    }
 
-   public void setjLabel10(String data){
-        this.jLabel10.setText(data);
+   public static void setjLabel10(String data){
+        checkin.jLabel10.setText(data);
    }
 
 }
