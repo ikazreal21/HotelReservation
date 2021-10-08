@@ -1,4 +1,13 @@
+<<<<<<< HEAD:src/hotelgui_Views/guestlist.java
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package hotelgui_Views;
+=======
 package hotelgui;
+>>>>>>> master:src/hotelgui/guestlist.java
 
 import java.sql.*;
 import java.util.Vector;

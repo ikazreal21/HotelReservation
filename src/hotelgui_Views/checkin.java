@@ -1,97 +1,29 @@
+<<<<<<< HEAD:src/hotelgui_Views/checkin.java
+package hotelgui_Views;
+=======
 package hotelgui;
+>>>>>>> master:src/hotelgui/checkin.java
 
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import Model.Checkin_Model;
+import Controller.Checkin_Controller;
 
+<<<<<<< HEAD:src/hotelgui_Views/checkin.java
+
+public class checkin extends javax.swing.JFrame{
+
+=======
 
 public class checkin extends javax.swing.JFrame {
 
+>>>>>>> master:src/hotelgui/checkin.java
     public checkin() {
         initComponents();
-        Connect();
-        autoID();
-        Roomtype();
-        RoomNo();
+        Checkin_Model.Connect();
+        Checkin_Model.autoID();
+        Checkin_Model.Roomtype();
+        Checkin_Model.RoomNo();
     }
-    
-    
-    Connection conn;
-    PreparedStatement pst;
-    DefaultTableModel dtm;
-    
-    public void Connect(){
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/HotelReservation", "root", "");    
-             
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void autoID(){
-        
-        try {
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("Select MAX(chid) from checkin");
-            rs.next();
-            rs.getString("MAX(chid)");
-            
-            if(rs.getString("MAX(chid)")==null){
-                jLabel10.setText("G001");
-            }
-            else{
-                long id = Long.parseLong(rs.getString("MAX(chid)").substring(2, rs.getString("MAX(chid)").length()));
-                id++;
-                jLabel10.setText("G" + String.format("%03d", id));
-            }
-           
-            
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-     public void Roomtype(){
-        try {
-            pst = conn.prepareStatement("select Distinct rtype from room");
-            ResultSet rs = pst.executeQuery();
-            txtrtype.removeAllItems();
-            
-            while(rs.next()){
-                txtrtype.addItem(rs.getString("rtype"));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-                
-    }
-    public void RoomNo(){
-        try {
-            pst = conn.prepareStatement("select Distinct rid from room");
-            ResultSet rs = pst.executeQuery();
-            txtrno.removeAllItems();
-            
-            while(rs.next()){
-                txtrno.addItem(rs.getString("rid"));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-                
-    }
-    
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,6 +72,18 @@ public class checkin extends javax.swing.JFrame {
 
         jLabel9.setText("Payment");
 
+        txtrno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrnoActionPerformed(evt);
+            }
+        });
+
+        txtrtype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrtypeActionPerformed(evt);
+            }
+        });
+
         jLabel10.setForeground(new java.awt.Color(114, 152, 139));
         jLabel10.setText("jLabel10");
 
@@ -153,6 +97,11 @@ public class checkin extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(114, 152, 139));
         jButton2.setText("Clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Go back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -171,37 +120,33 @@ public class checkin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(83, 83, 83)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtrtype, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtgname)
-                                    .addComponent(txtcheckin, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                                     .addComponent(txtphone)
-                                    .addComponent(txtrno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(83, 83, 83)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtrno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtcheckin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(49, 49, 49))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtpayment, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtrtype, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel7)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(118, 118, 118)
                                 .addComponent(jButton2)))
-                        .addGap(0, 52, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -261,55 +206,20 @@ public class checkin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
             
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String resno = jLabel10.getText();
-        String gname = txtgname.getText();
-        String phone = txtphone.getText();
-        SimpleDateFormat chin = new SimpleDateFormat("yyyy-MM-dd");
-        String indate = chin.format(txtcheckin.getDate());
-//        SimpleDateFormat chout = new SimpleDateFormat("yyyy-MM-dd");
-//        String outdate = chout.format(txtcheckout.getDate());
-        String roomtype = txtrtype.getSelectedItem().toString();
-        String roomno = txtrno.getSelectedItem().toString();
-        String payment = txtpayment.getText();
- 
-        try {
-            pst = conn.prepareStatement("insert into checkin(chid, g_name, gphone, chin, roomno, rtype, payment) values(?,?,?,?,?,?,?)");
-            pst.setString(1, resno);
-            pst.setString(2, gname);
-            pst.setString(3, phone);
-            pst.setString(4, indate);
-//            pst.setString(5, outdate);
-            pst.setString(5, roomno);
-            pst.setString(6, roomtype);
-            pst.setString(7, payment);
-            pst.executeUpdate();
-            
-            int res3 = JOptionPane.showOptionDialog(new JFrame(), "Do you Confirm the Check in of " + gname + "\nWith the Balance of " + payment,"Confirmation",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Yes", "No" },
-                    JOptionPane.YES_OPTION);
-                    
-            switch (res3) {
-                case JOptionPane.YES_OPTION:
-                    JOptionPane.showMessageDialog(this, "Checkin Succesfull");
-                    txtgname.setText("");
-                    txtphone.setText("");
-                    txtrno.setSelectedIndex(-1);
-                    txtrtype.setSelectedIndex(-1);
-                    txtpayment.setText("");
-                    autoID();
-                    break;
-                case JOptionPane.NO_OPTION:
-                    System.exit(0);
-                default:
-                    break;
-            }
-            
-           
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Checkin_Controller.Checkin_Control();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtrnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtrnoActionPerformed
+
+    private void txtrtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrtypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtrtypeActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,6 +250,7 @@ public class checkin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new checkin().setVisible(true);
             }
@@ -351,7 +262,7 @@ public class checkin extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    public static javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -359,11 +270,19 @@ public class checkin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private com.toedter.calendar.JDateChooser txtcheckin;
-    private javax.swing.JTextField txtgname;
-    private javax.swing.JTextField txtpayment;
-    private javax.swing.JTextField txtphone;
-    private javax.swing.JComboBox<String> txtrno;
-    private javax.swing.JComboBox<String> txtrtype;
+    public static com.toedter.calendar.JDateChooser txtcheckin;
+    public static javax.swing.JTextField txtgname;
+    public static javax.swing.JTextField txtpayment;
+    public static javax.swing.JTextField txtphone;
+    public static javax.swing.JComboBox<String> txtrno;
+    public static javax.swing.JComboBox<String> txtrtype;
     // End of variables declaration//GEN-END:variables
+    public String getLabel10(){
+        return jLabel10.getText();
+   }
+
+   public static void setjLabel10(String data){
+        checkin.jLabel10.setText(data);
+   }
+
 }

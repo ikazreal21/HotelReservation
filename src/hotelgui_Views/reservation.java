@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotelgui;
+package hotelgui_Views;
 
 import java.sql.*;
 import java.text.ParseException;
@@ -60,12 +60,12 @@ public class reservation extends javax.swing.JFrame {
             rs.getString("MAX(reid)");
             
             if(rs.getString("MAX(reid)")==null){
-                jLabel10.setText("RE001");
+                reservationNo.setText("RE001");
             }
             else{
                 long id = Long.parseLong(rs.getString("MAX(reid)").substring(2, rs.getString("MAX(reid)").length()));
                 id++;
-                jLabel10.setText("RE" + String.format("%03d", id));
+                reservationNo.setText("RE" + String.format("%03d", id));
             }
            
             
@@ -185,7 +185,7 @@ public class reservation extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        reservationNo = new javax.swing.JLabel();
         txtname = new javax.swing.JTextField();
         txtphone = new javax.swing.JTextField();
         txtcheckin = new com.toedter.calendar.JDateChooser();
@@ -235,13 +235,19 @@ public class reservation extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel9.setText("Bed Type");
 
-        jLabel10.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(114, 152, 139));
-        jLabel10.setText("jLabel10");
+        reservationNo.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
+        reservationNo.setForeground(new java.awt.Color(114, 152, 139));
+        reservationNo.setText("jLabel10");
 
         txtname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnameActionPerformed(evt);
+            }
+        });
+
+        txtrtype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrtypeActionPerformed(evt);
             }
         });
 
@@ -336,7 +342,7 @@ public class reservation extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(34, 34, 34)
-                                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(reservationNo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,7 +389,7 @@ public class reservation extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel2)
-                                            .addComponent(jLabel10))
+                                            .addComponent(reservationNo))
                                         .addGap(34, 34, 34)
                                         .addComponent(jLabel3)
                                         .addGap(18, 18, 18)
@@ -449,7 +455,7 @@ public class reservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String resno = jLabel10.getText();
+        String resno = reservationNo.getText();
         String gname = txtname.getText();
         String phone = txtphone.getText();
         SimpleDateFormat chin = new SimpleDateFormat("yyyy-MM-dd");
@@ -503,7 +509,7 @@ public class reservation extends javax.swing.JFrame {
             SimpleDateFormat chout = new SimpleDateFormat("yyyy-MM-dd");
             
             
-            jLabel10.setText(dtm.getValueAt(select, 0).toString());
+            reservationNo.setText(dtm.getValueAt(select, 0).toString());
             txtname.setText(dtm.getValueAt(select, 1).toString());
             txtphone.setText(dtm.getValueAt(select, 2).toString());
   
@@ -527,7 +533,7 @@ public class reservation extends javax.swing.JFrame {
     }//GEN-LAST:event_reservationtableMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String resno = jLabel10.getText();
+        String resno = reservationNo.getText();
         String gname = txtname.getText();
         String phone = txtphone.getText();
         SimpleDateFormat chin = new SimpleDateFormat("yyyy-MM-dd");
@@ -582,7 +588,7 @@ public class reservation extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String resno = jLabel10.getText();
+        String resno = reservationNo.getText();
         
         try {
             pst = conn.prepareStatement("delete from reservation where reid = ? ");
@@ -612,6 +618,10 @@ public class reservation extends javax.swing.JFrame {
         openingform open = new openingform();
         open.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void txtrtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrtypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtrtypeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -655,7 +665,6 @@ public class reservation extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -667,6 +676,7 @@ public class reservation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel reservationNo;
     private javax.swing.JTable reservationtable;
     private javax.swing.JComboBox<String> txtbedtype;
     private com.toedter.calendar.JDateChooser txtcheckin;
