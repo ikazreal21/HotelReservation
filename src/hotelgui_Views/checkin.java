@@ -1,25 +1,17 @@
-package hotelgui;
+package hotelgui_Views;
 
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-//import Model.*;
-
+import Model.Checkin_Model;
+import Controller.Checkin_Controller;
 
 
 public class checkin extends javax.swing.JFrame{
-    static Checkin_Controller CheckinC;
 
-    
     public checkin() {
         initComponents();
-        Checkin_Controller.Connect();
-        Checkin_Controller.autoID();
-        Checkin_Controller.Roomtype();
-        Checkin_Controller.RoomNo();
+        Checkin_Model.Connect();
+        Checkin_Model.autoID();
+        Checkin_Model.Roomtype();
+        Checkin_Model.RoomNo();
     }
       
     /**
@@ -204,54 +196,7 @@ public class checkin extends javax.swing.JFrame{
     }//GEN-LAST:event_jButton3ActionPerformed
             
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String resno = jLabel10.getText();
-        String gname = txtgname.getText();
-        String phone = txtphone.getText();
-        SimpleDateFormat chin = new SimpleDateFormat("yyyy-MM-dd");
-        String indate = chin.format(txtcheckin.getDate());
-//        SimpleDateFormat chout = new SimpleDateFormat("yyyy-MM-dd");
-//        String outdate = chout.format(txtcheckout.getDate());
-        String roomtype = txtrtype.getSelectedItem().toString();
-        String roomno = txtrno.getSelectedItem().toString();
-        String payment = txtpayment.getText();
- 
-        try {
-            Checkin_Controller.pst = Checkin_Controller.conn.prepareStatement("insert into checkin(chid, g_name, gphone, chin, roomno, rtype, payment) values(?,?,?,?,?,?,?)");
-            Checkin_Controller.pst.setString(1, resno);
-            Checkin_Controller.pst.setString(2, gname);
-            Checkin_Controller.pst.setString(3, phone);
-            Checkin_Controller.pst.setString(4, indate);
-//          pst.setString(5, outdate);
-            Checkin_Controller.pst.setString(5, roomno);
-            Checkin_Controller.pst.setString(6, roomtype);
-            Checkin_Controller.pst.setString(7, payment);
-            Checkin_Controller.pst.executeUpdate();
-            
-            int res3 = JOptionPane.showOptionDialog(new JFrame(), "Do you Confirm the Check in of " + gname + "\nWith the Balance of " + payment,"Confirmation",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Yes", "No" },
-                    JOptionPane.YES_OPTION);
-                    
-            switch (res3) {
-                case JOptionPane.YES_OPTION:
-                    JOptionPane.showMessageDialog(this, "Checkin Succesfull");
-                    txtgname.setText("");
-                    txtphone.setText("");
-                    txtrno.setSelectedIndex(-1);
-                    txtrtype.setSelectedIndex(-1);
-                    txtpayment.setText("");
-                    Checkin_Controller.autoID();
-                    break;
-                case JOptionPane.NO_OPTION:
-                    System.exit(0);
-                default:
-                    break;
-            }
-            
-           
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Checkin_Controller.Checkin_Control();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtrnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrnoActionPerformed
@@ -307,7 +252,7 @@ public class checkin extends javax.swing.JFrame{
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    static javax.swing.JLabel jLabel10;
+    public static javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -315,12 +260,12 @@ public class checkin extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private com.toedter.calendar.JDateChooser txtcheckin;
-    private javax.swing.JTextField txtgname;
-    private javax.swing.JTextField txtpayment;
-    private javax.swing.JTextField txtphone;
-    static javax.swing.JComboBox<String> txtrno;
-    static javax.swing.JComboBox<String> txtrtype;
+    public static com.toedter.calendar.JDateChooser txtcheckin;
+    public static javax.swing.JTextField txtgname;
+    public static javax.swing.JTextField txtpayment;
+    public static javax.swing.JTextField txtphone;
+    public static javax.swing.JComboBox<String> txtrno;
+    public static javax.swing.JComboBox<String> txtrtype;
     // End of variables declaration//GEN-END:variables
     public String getLabel10(){
         return jLabel10.getText();

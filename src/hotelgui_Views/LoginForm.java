@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-package hotelgui;
+package hotelgui_Views;
 
 
+import Controller.Login_Controller;
 import javax.swing.JOptionPane;
 
 
@@ -16,20 +17,7 @@ public class LoginForm extends javax.swing.JFrame {
     public LoginForm() {
         initComponents();
     }
-    public void login(){
-       String password2 = password.getText();
-       
-       
-       if(password2.contains("hotelsystem")){
-           openingform admin = new openingform();
-           admin.setVisible(true);
-           this.setVisible(false);
-       }
-       else{
-           JOptionPane.showMessageDialog(null, "Wrong Password");
-       }
-       
-    }
+
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -66,30 +54,31 @@ public class LoginForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
+                        .addGap(239, 239, 239)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
+                        .addGap(134, 134, 134)
+                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
+                .addGap(80, 80, 80)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(40, 40, 40)
+                .addGap(48, 48, 48)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -113,7 +102,14 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        login();
+        if (Login_Controller.login()) {
+           this.setVisible(false); 
+           openingform open = new openingform();
+           open.setVisible(true);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Wrong Password or Username");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -156,7 +152,7 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField password;
+    public static javax.swing.JPasswordField password;
     // End of variables declaration//GEN-END:variables
 
 }
