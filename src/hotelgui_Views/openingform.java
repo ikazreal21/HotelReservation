@@ -1,19 +1,16 @@
+<<<<<<< HEAD:src/hotelgui_Views/openingform.java
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package hotelgui_Views;
+=======
+package hotelgui;
+>>>>>>> master:src/hotelgui/openingform.java
 
-/**
- *
- * @author expzak
- */
 public class openingform extends javax.swing.JFrame {
 
-    /**
-     * Creates new form openingform
-     */
     public openingform() {
         initComponents();
     }

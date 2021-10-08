@@ -1,11 +1,21 @@
+<<<<<<< HEAD:src/hotelgui_Views/checkin.java
 package hotelgui_Views;
+=======
+package hotelgui;
+>>>>>>> master:src/hotelgui/checkin.java
 
 import Model.Checkin_Model;
 import Controller.Checkin_Controller;
 
+<<<<<<< HEAD:src/hotelgui_Views/checkin.java
 
 public class checkin extends javax.swing.JFrame{
 
+=======
+
+public class checkin extends javax.swing.JFrame {
+
+>>>>>>> master:src/hotelgui/checkin.java
     public checkin() {
         initComponents();
         Checkin_Model.Connect();
