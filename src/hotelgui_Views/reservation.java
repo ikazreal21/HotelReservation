@@ -5,172 +5,27 @@
  */
 package hotelgui_Views;
 
-import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import Controller.Reservation_Controller;
+import Model.Reservation_Model;
 
-/**
- *
- * @author expzak
- */
+
 public class reservation extends javax.swing.JFrame {
 
-    /**
-     * Creates new form reservation
-     */
     public reservation() {
         initComponents();
-        Connect();
-        autoID();
-        Roomtype();
-        Bedtype();
-        RoomNo();
-        LoadR();
+        Reservation_Model.Connect();
+        Reservation_Model.autoID();
+        Reservation_Model.Roomtype();
+        Reservation_Model.Bedtype();
+        Reservation_Model.RoomNo();
+        Reservation_Model.LoadR();
                 
     }
     
     
     
-    Connection conn;
-    PreparedStatement pst;
-    DefaultTableModel dtm;
     
-    public void Connect(){
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/HotelReservation", "root", "");    
-             
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void autoID(){
-        
-        try {
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("Select MAX(reid) from reservation");
-            rs.next();
-            rs.getString("MAX(reid)");
-            
-            if(rs.getString("MAX(reid)")==null){
-                reservationNo.setText("RE001");
-            }
-            else{
-                long id = Long.parseLong(rs.getString("MAX(reid)").substring(2, rs.getString("MAX(reid)").length()));
-                id++;
-                reservationNo.setText("RE" + String.format("%03d", id));
-            }
-           
-            
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void Roomtype(){
-        try {
-            pst = conn.prepareStatement("select Distinct rtype from room");
-            ResultSet rs = pst.executeQuery();
-            txtrtype.removeAllItems();
-            
-            while(rs.next()){
-                txtrtype.addItem(rs.getString("rtype"));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-                
-    }
-    public void Bedtype(){
-        try {
-            pst = conn.prepareStatement("select Distinct bedtype from room");
-            ResultSet rs = pst.executeQuery();
-            txtbedtype.removeAllItems();
-            
-            while(rs.next()){
-                txtbedtype.addItem(rs.getString("bedtype"));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-                
-    }
-    public void RoomNo(){
-        try {
-            pst = conn.prepareStatement("select Distinct rid from room");
-            ResultSet rs = pst.executeQuery();
-            txtrno.removeAllItems();
-            
-            while(rs.next()){
-                txtrno.addItem(rs.getString("rid"));
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-                
-    }
-    
-    
-    
-    public void LoadR(){
-        int col;
-        
-        try {
-            pst = conn.prepareStatement("Select * from reservation");
-            ResultSet rs = pst.executeQuery();
-            
-            ResultSetMetaData rsd = rs.getMetaData();
-            col = rsd.getColumnCount();
-            
-            dtm = (DefaultTableModel)reservationtable.getModel();
-            dtm.setRowCount(0);
-            
-            while(rs.next()){
-                Vector v2 = new Vector();
-                
-                for(int i=1; i<=col; i++){
-                    v2.add(rs.getString("reid"));
-                    v2.add(rs.getString("gname"));
-                    v2.add(rs.getString("phone"));
-                    v2.add(rs.getString("checkin"));
-                    v2.add(rs.getString("checkout"));
-                    v2.add(rs.getString("rtype"));
-                    v2.add(rs.getString("roomno"));
-                    v2.add(rs.getString("bedtype"));
-                    v2.add(rs.getString("tamount"));
-                }
-                
-                dtm.addRow(v2); 
-            }
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
  
-    
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -455,46 +310,7 @@ public class reservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String resno = reservationNo.getText();
-        String gname = txtname.getText();
-        String phone = txtphone.getText();
-        SimpleDateFormat chin = new SimpleDateFormat("yyyy-MM-dd");
-        String indate = chin.format(txtcheckin.getDate());
-        SimpleDateFormat chout = new SimpleDateFormat("yyyy-MM-dd");
-        String outdate = chout.format(txtcheckout.getDate());
-        String roomtype = txtrtype.getSelectedItem().toString();
-        String bedtype = txtbedtype.getSelectedItem().toString();
-        String roomno = txtrno.getSelectedItem().toString();
-        String payment = txtpay.getText();
- 
-        try {
-            pst = conn.prepareStatement("insert into reservation(reid, gname, phone, checkin, checkout, bedtype, roomno, rtype, tamount) values(?,?,?,?,?,?,?,?,?)");
-            pst.setString(1, resno);
-            pst.setString(2, gname);
-            pst.setString(3, phone);
-            pst.setString(4, indate);
-            pst.setString(5, outdate);
-            pst.setString(6, bedtype);
-            pst.setString(7, roomno);
-            pst.setString(8, roomtype);
-            pst.setString(9, payment);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Reservation Added");
-
-            txtname.setText("");
-            txtphone.setText("");
-            txtname.setText("");
-            txtrno.setSelectedIndex(-1);
-            txtrtype.setSelectedIndex(-1);
-            txtbedtype.setSelectedIndex(-1);
-            txtpay.setText("");
-            autoID();
-            LoadR();
-                
-          
-        } catch (SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Reservation_Controller.Reservation_Button();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
@@ -502,115 +318,19 @@ public class reservation extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnameActionPerformed
 
     private void reservationtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reservationtableMouseClicked
-        try {
-            dtm = (DefaultTableModel)reservationtable.getModel();
-            int select = reservationtable.getSelectedRow();
-            SimpleDateFormat chin = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat chout = new SimpleDateFormat("yyyy-MM-dd");
-            
-            
-            reservationNo.setText(dtm.getValueAt(select, 0).toString());
-            txtname.setText(dtm.getValueAt(select, 1).toString());
-            txtphone.setText(dtm.getValueAt(select, 2).toString());
-  
-            String in = dtm.getValueAt(select, 3).toString();
-            String out = dtm.getValueAt(select, 4).toString();
-            Date indate = chin.parse(in);
-            Date outdate = chout.parse(out);
-
-            
-            txtcheckin.setDate(indate);
-            txtcheckout.setDate(outdate);
-            txtrtype.setSelectedItem(dtm.getValueAt(select, 5).toString());
-            txtrno.setSelectedItem(dtm.getValueAt(select, 6).toString());
-            txtbedtype.setSelectedItem(dtm.getValueAt(select, 7).toString());
-            txtpay.setText(dtm.getValueAt(select, 8).toString());
-            
-            jButton1.setEnabled(false);
-        } catch (ParseException ex) {
-            Logger.getLogger(reservation.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       Reservation_Controller.Table_Click();
     }//GEN-LAST:event_reservationtableMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String resno = reservationNo.getText();
-        String gname = txtname.getText();
-        String phone = txtphone.getText();
-        SimpleDateFormat chin = new SimpleDateFormat("yyyy-MM-dd");
-        String indate = chin.format(txtcheckin.getDate());
-        SimpleDateFormat chout = new SimpleDateFormat("yyyy-MM-dd");
-        String outdate = chout.format(txtcheckout.getDate());
-        String roomtype = txtrtype.getSelectedItem().toString();
-        String bedtype = txtbedtype.getSelectedItem().toString();
-        String roomno = txtrno.getSelectedItem().toString();
-        String payment = txtpay.getText();
- 
-        try {
-            pst = conn.prepareStatement("update reservation set gname = ?, phone = ?, checkin = ?, checkout = ?, bedtype = ?, roomno = ?, rtype = ?, tamount = ? where reid = ? ");
-            pst.setString(1, resno);
-            pst.setString(2, gname);
-            pst.setString(3, phone);
-            pst.setString(4, indate);
-            pst.setString(5, outdate);
-            pst.setString(6, bedtype);
-            pst.setString(7, roomno);
-            pst.setString(8, roomtype);
-            pst.setString(9, payment);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Reservation Edited");
-
-            txtname.setText("");
-            txtphone.setText("");
-            txtrno.setSelectedIndex(-1);
-            txtrtype.setSelectedIndex(-1);
-            txtbedtype.setSelectedIndex(-1);
-            txtpay.setText("");
-            autoID();
-            LoadR();
-            jButton1.setEnabled(true);
-                
-          
-        } catch (SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Reservation_Controller.Reservation_Edit();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        txtname.setText("");
-        txtphone.setText("");
-        txtrno.setSelectedIndex(-1);
-        txtrtype.setSelectedIndex(-1);
-        txtbedtype.setSelectedIndex(-1);
-        txtpay.setText("");
-        autoID();
-        LoadR();
-        jButton1.setEnabled(true);
+        Reservation_Controller.Reservation_Clear();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String resno = reservationNo.getText();
-        
-        try {
-            pst = conn.prepareStatement("delete from reservation where reid = ? ");
-            pst.setString(1, resno);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Room Deleted");
-            
-            txtname.setText("");
-            txtphone.setText("");
-            txtrno.setSelectedIndex(-1);
-            txtrtype.setSelectedIndex(-1);
-            txtbedtype.setSelectedIndex(-1);
-            txtpay.setText("");
-            autoID();
-            LoadR();
-            jButton1.setEnabled(true);
-            
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(room.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Reservation_Controller.Reservation_Delete();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -659,10 +379,10 @@ public class reservation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    public static javax.swing.JButton jButton1;
+    public static javax.swing.JButton jButton2;
+    public static javax.swing.JButton jButton3;
+    public static javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -676,15 +396,15 @@ public class reservation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel reservationNo;
-    private javax.swing.JTable reservationtable;
-    private javax.swing.JComboBox<String> txtbedtype;
-    private com.toedter.calendar.JDateChooser txtcheckin;
-    private com.toedter.calendar.JDateChooser txtcheckout;
-    private javax.swing.JTextField txtname;
-    private javax.swing.JTextField txtpay;
-    private javax.swing.JTextField txtphone;
-    private javax.swing.JComboBox<String> txtrno;
-    private javax.swing.JComboBox<String> txtrtype;
+    public static javax.swing.JLabel reservationNo;
+    public static javax.swing.JTable reservationtable;
+    public static javax.swing.JComboBox<String> txtbedtype;
+    public static com.toedter.calendar.JDateChooser txtcheckin;
+    public static com.toedter.calendar.JDateChooser txtcheckout;
+    public static javax.swing.JTextField txtname;
+    public static javax.swing.JTextField txtpay;
+    public static javax.swing.JTextField txtphone;
+    public static javax.swing.JComboBox<String> txtrno;
+    public static javax.swing.JComboBox<String> txtrtype;
     // End of variables declaration//GEN-END:variables
 }
