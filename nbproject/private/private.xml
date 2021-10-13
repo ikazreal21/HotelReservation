@@ -8,9 +8,9 @@
             <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/hotelgui_Views/reservation.java</file>
         </group>
         <group>
-            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/Controller/Reservation_Controller.java</file>
-            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/hotelgui_Views/room.java</file>
-            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/hotelgui_Views/reservation.java</file>
+            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/Controller/Checkout_Controller.java</file>
+            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/Controller/Guestlist_Controller.java</file>
+            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/Controller/Checkin_Controller.java</file>
         </group>
     </open-files>
 </project-private>
