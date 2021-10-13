@@ -11,9 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
-public class Guestlist_Controller {
+
+interface GuestlistInterface {
     
-    public static void LoadR(){
+    public static void LoadRInt(){
         int col;
         
         try {
@@ -48,5 +49,12 @@ public class Guestlist_Controller {
             Logger.getLogger(guestlist.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+}
 
+
+public class Guestlist_Controller implements GuestlistInterface{
+    
+    public static void LoadR(){
+        GuestlistInterface.LoadRInt();
+    }
 }
