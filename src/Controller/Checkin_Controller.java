@@ -10,9 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
-public class Checkin_Controller {    
-  
-    public static void Checkin_Control(){
+
+interface CheckinInterface {
+    
+    public static void CheckinInt(){
         String resno = checkin.jLabel10.getText();
         String gname = checkin.txtgname.getText();
         String phone = checkin.txtphone.getText();
@@ -59,5 +60,14 @@ public class Checkin_Controller {
         catch (SQLException ex) {
             Logger.getLogger(checkin.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+}
+
+
+
+public class Checkin_Controller implements CheckinInterface {    
+  
+    public static void Checkin_Control(){
+        CheckinInterface.CheckinInt();
     }
 }
