@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/Model/Checkin_Model.java</file>
+            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/Controller/Reservation_Controller.java</file>
+            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/hotelgui_Views/room.java</file>
+            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/hotelgui_Views/reservation.java</file>
         </group>
         <group>
-            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/hotelgui_Views/openingform.java</file>
+            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/Controller/Reservation_Controller.java</file>
+            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/hotelgui_Views/room.java</file>
+            <file>file:/home/expzak/Coding%20Stuff/Java/Netbeans_projects/HotelReservation/src/hotelgui_Views/reservation.java</file>
         </group>
     </open-files>
 </project-private>

@@ -116,15 +116,15 @@ public class Reservation_Controller {
  
         try {
             Reservation_Model.pst = Reservation_Model.conn.prepareStatement("update reservation set gname = ?, phone = ?, checkin = ?, checkout = ?, bedtype = ?, roomno = ?, rtype = ?, tamount = ? where reid = ? ");
-            Reservation_Model.pst.setString(1, resno);
-            Reservation_Model.pst.setString(2, gname);
-            Reservation_Model.pst.setString(3, phone);
-            Reservation_Model.pst.setString(4, indate);
-            Reservation_Model.pst.setString(5, outdate);
-            Reservation_Model.pst.setString(6, bedtype);
-            Reservation_Model.pst.setString(7, roomno);
-            Reservation_Model.pst.setString(8, roomtype);
-            Reservation_Model.pst.setString(9, payment);
+            Reservation_Model.pst.setString(1, gname);
+            Reservation_Model.pst.setString(2, phone);
+            Reservation_Model.pst.setString(3, indate);
+            Reservation_Model.pst.setString(4, outdate);
+            Reservation_Model.pst.setString(5, bedtype);
+            Reservation_Model.pst.setString(6, roomno);
+            Reservation_Model.pst.setString(7, roomtype);
+            Reservation_Model.pst.setString(8, payment);
+            Reservation_Model.pst.setString(9, resno);
             Reservation_Model.pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Reservation Edited");
 
