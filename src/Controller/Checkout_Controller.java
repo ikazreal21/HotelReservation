@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Checkout_Controller {
+interface CheckoutInterface{
     
-    public static void Checkout_Button(){
-        Checkout_Model.dtm = (DefaultTableModel)checkout.getModel();
+    public static void Checkout_Button_Int(){
+         Checkout_Model.dtm = (DefaultTableModel)checkout.getModel();
         int select = checkout.getSelectedRow();
         String chno = Checkout_Model.dtm.getValueAt(select, 0).toString();
         
@@ -35,7 +35,7 @@ public class Checkout_Controller {
         }
     }
     
-    public static void Table_Click(){
+    public static void Table_Click_Int(){
         try {
             Checkout_Model.dtm = (DefaultTableModel)checkout.getModel();
             int select = checkout.getSelectedRow();
@@ -51,5 +51,18 @@ public class Checkout_Controller {
         } catch (ParseException ex) {
             Logger.getLogger(checkout.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+}
+
+
+
+public class Checkout_Controller implements CheckoutInterface{
+    
+    public static void Checkout_Button(){
+       CheckoutInterface.Checkout_Button_Int();
+    }
+    
+    public static void Table_Click(){
+        CheckoutInterface.Table_Click_Int();
     }
 }
